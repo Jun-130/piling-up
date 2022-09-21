@@ -1,24 +1,81 @@
-# README
+# アプリケーション名
+PILING UP
+<br /><br />
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション概要
+毎月の収支の公開や貯金の目標金額の設定ができ、ユーザーのプロフィールで検索したり、ユーザー同士で収支を参考にし合うことができる。
+<br /><br />
 
-Things you may want to cover:
+# URL
+http://
+<br /><br />
 
-* Ruby version
+# テスト用アカウント
+### Basic認証
+* ID: jun130
+* パスワード: 38355
+### アカウント1
+* メールアドレス: test@test.com
+* パスワード: 12345a
+### アカウント2
+* メールアドレス: samplet@sample.com
+* パスワード: 12345a
+<br /><br />
 
-* System dependencies
+# 利用方法
+## 収支投稿
+## 目標の設定
+## 他者とのコミュニケーション
+<br /><br />
 
-* Configuration
+# アプリケーションを作成した背景
+初めて一人暮らしをした時の過去の自分がペルソナ。  
+* 家計簿を付け始めたものの、どのような費目にするか・どのような支出割合が適切か、手探りの状態だった。  
+* 雑誌やブログを参考にしたが、そういった媒体に家計簿を公開している人は貯金を極めている人が多いため、もっと普通の人や自分と同じようなプロフィールの人の家計簿も見てみたいと感じた。  
+* 家計簿を付けるだけで満足してしまい貯金へのモチベーションが保てない時期があった。  
 
-* Database creation
+以上から、  
+1. 気軽に投稿できる
+2. ユーザーがどの費目にどの程度使っているのか比べて参考にできる
+3. ユーザーのプロフィールで絞り込み検索ができる
+4. モチベーションを保つ工夫がある  
 
-* Database initialization
+といった機能を持つアプリを開発することにした。
+<br /><br />
 
-* How to run the test suite
+# 洗い出した要件
+[要件を定義したシート](https://docs.google.com/spreadsheets/d/1NTQiaITko4Jr8C9RD0_LEVGF9SPnwetnzbJAGwjtnc0/edit#gid=982722306)
+<br /><br />
 
-* Services (job queues, cache servers, search engines, etc.)
+# 実装した機能についての画像やGIFおよびその説明
+<br /><br />
 
-* Deployment instructions
+# 実装予定の機能
+<br /><br />
 
-* ...
+# データベース設計
+<img src="er.png" alt="ER図">
+<br /><br />
+
+# 画面遷移図
+<img src="transition.png" alt="画面遷移図">
+<br /><br />
+
+# 開発環境
+- フロントエンド
+- バックエンド
+- インフラ
+- テスト
+- テキストエディタ
+- タスク管理
+<br /><br />
+
+# ローカルでの動作環境
+以下のコマンドを順に実行  
+% git clone https://github.com/xxxxxx  
+% cd piling-up  
+% bundle install  
+% yarn install  
+<br /><br />
+
+# 工夫したポイント
