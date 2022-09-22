@@ -1,0 +1,55 @@
+.header {
+  background-color: #f4ffea;
+  margin-bottom: 40px;
+}
+.inner {
+  width: 945px;
+  margin: 0 auto;
+}
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.nav__left{
+  margin: auto 0;
+}
+.logo {
+  font-family: 'Kanit', sans-serif;
+  color: #5b5c76;
+  text-decoration: none;
+  font-size: 2.4em;
+}
+.logo:hover{
+  opacity: 0.5;
+}
+.nav__right{
+  margin: 18px 0
+}
+.nav__btn{
+  display: inline-block;
+  padding: 0.4em 1.6em;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #00a096;
+  text-decoration: none;
+  user-select: none;
+  border: 1px #00a096 solid;
+  border-radius: 3px;
+  transition: 0.4s ease;
+}
+.nav__btn:hover{
+  color: #fff;
+  background: #00a096;
+}
+.nav__logout{
+  display: inline-block;
+  padding: 0.4em 1.6em;
+  font-size: 0.9em;
+  color: #00a096;
+  text-decoration: none;
+  user-select: none;
+}
+.nav__logout:hover{
+  opacity: 0.5;
+}
