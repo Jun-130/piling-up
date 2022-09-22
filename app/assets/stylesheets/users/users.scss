@@ -1,0 +1,111 @@
+.users-show{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-show{
+  width: 945px;
+  margin: 0 auto;
+}
+.user-info-top, .user-info-bottom,
+.user-info-top__right-top, .user-info-top__right-middle,
+.user-info-top__right-bottom{
+  display: flex;
+}
+.user-info-top__left, .user-info-bottom__left{
+  width: 345px;
+}
+.user-info-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.material-symbols-outlined{
+  font-family: 'Material Icons Outlined';
+  content: '\e853';
+  font-size: 148px;
+  color:  gray;
+}
+.user-info-top__right-top{
+  margin: 15px 0 15px 0;
+}
+.user-info-nickname{
+  line-height: 30px;
+  color:  #5b5c76;
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.4em;
+  padding-right: 15px;
+}
+.user-info-edit-account{
+  line-height: 18px;
+  padding: 7px 5px 4px 5px;
+  font-size: 0.8em;
+  border: 1px #dddddd solid;
+  border-radius: 5px;
+}
+.user-info-edit-account a{
+  color: #5b5c76;
+}
+.number{
+  margin-right: 30px;
+  color: #404448;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.user-info-target{
+  margin: 26px 12px 0 0;
+  color: #404448;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.user-info-target span{
+  color: #00a096;
+  font-family: 'Kanit', sans-serif;
+}
+.user-info-edit-target{
+  width: 145px;
+  height: 30px;
+  line-height: 18px;
+  padding: 5px 0 4px 0;
+  font-size: 0.8em;
+  border: 1px #dddddd solid;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 19px;
+}
+.user-info-edit-target a{
+  color: #5b5c76;
+}
+.user-info-bottom{
+  margin-top: 35px;
+}
+.td-profile-label, .td-profile{
+  color: #404448;
+  padding: 0 10px 9px 2px;
+  font-size: 0.9em;
+}
+.td-profile-label{
+  width: 115px;
+}
+.user-info-bottom__right{
+}
+.user-info-edit-profile{
+  line-height: 17px;
+  padding: 5px 0 4px 0;
+  font-size: 0.8em;
+  border: 1px #dddddd solid;
+  border-radius: 5px;
+  width: 128px;
+  text-align: center;
+  margin-bottom: 11px;
+}
+.user-info-edit-profile a{
+  color: #5b5c76;
+}
+.user-info-introduction{
+  color: #404448;
+  font-size: 0.9em;
+}
+.user-posts{
+  margin-top: 30px;
+  border-top: 1px #dddddd solid;
+  padding-top: 30px;
+}

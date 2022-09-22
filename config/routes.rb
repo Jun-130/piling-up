@@ -3,5 +3,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root to: 'posts#index'
+  resources :users, only: :show
   resources :profiles, only: [:new, :create]
 end
