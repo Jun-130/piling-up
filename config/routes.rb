@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resources :users, only: :show
   resources :profiles, only: [:new, :create]
+  resources :targets, only: [:index, :create]
+  resources :posts, only: [:index, :new, :create]
 end

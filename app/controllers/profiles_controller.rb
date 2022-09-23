@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   def create
     profile = Profile.new(profile_params)
     if profile.save
-      redirect_to root_path
+      redirect_to user_path(current_user)
     else
       render :new
     end

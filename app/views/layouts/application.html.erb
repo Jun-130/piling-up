@@ -22,7 +22,7 @@
         <div class="nav__right">
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: :nav__logout %>
           <% if current_page?(user_path(current_user)) %>
-            <%= link_to "投稿する", "#", class: :nav__btn %>
+            <%= link_to "投稿する", new_post_path, class: :nav__btn %>
           <% else %>
             <%= link_to "マイページ", user_path(current_user), class: :nav__btn %>
           <% end %>

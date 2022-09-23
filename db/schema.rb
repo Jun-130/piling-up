@@ -10,7 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_22_213040) do
+ActiveRecord::Schema.define(version: 2022_09_23_080829) do
+
+  create_table "balances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_balances_on_post_id"
+  end
+
+  create_table "fixed_profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "age", null: false
+    t.string "gender", null: false
+    t.string "household", null: false
+    t.string "annual_income", null: false
+    t.string "prefecture", null: false
+    t.integer "monthly_target", null: false
+    t.integer "target"
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_fixed_profiles_on_post_id"
+  end
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "month", null: false
+    t.integer "net_income", null: false
+    t.integer "housing", null: false
+    t.integer "utilities", null: false
+    t.integer "internet", null: false
+    t.integer "groceries", null: false
+    t.integer "daily_necessities", null: false
+    t.integer "entertainment", null: false
+    t.integer "others", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "age_id", null: false
@@ -23,6 +61,16 @@ ActiveRecord::Schema.define(version: 2022_09_22_213040) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "targets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "deadline", null: false
+    t.integer "amount", null: false
+    t.integer "status", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_targets_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -39,5 +87,9 @@ ActiveRecord::Schema.define(version: 2022_09_22_213040) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "balances", "posts"
+  add_foreign_key "fixed_profiles", "posts"
+  add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "targets", "users"
 end

@@ -12,7 +12,7 @@
           <div class="user-info-nickname">
             <%= @user.nickname %>
           </div>
-          <% if user_signed_in? && current_user.id == @user.id %>
+          <% if current_user&.id == @user.id %>
           <div class="user-info-edit-account">
             <%= link_to "アカウント情報を編集", edit_user_registration_path %>
           </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="user-info-top__right-middle">
           <div class="user-info-statements number">
-          投稿 <%#= @user.posts.length %> 件
+          投稿 <%= @user.posts.length %> 件
           </div>
           <div class="user-info-follower number">
           フォロワー 0 人
@@ -31,11 +31,11 @@
         </div>
         <div class="user-info-top__right-bottom">
           <div class="user-info-target">
-            貯金目標 :　<span><%#= end_year_month %>20XX年XX月までに<%#= 直近のtarget-price %>XXXXXX円貯める！</span>
+            貯金目標 :　<span><%#= 直近のtarget.deadline %>20XX年XX月までに<%#= 直近のtarget.amount %>XXXXXX円貯める！</span>
           </div>
-          <% if user_signed_in? && current_user.id == @user.id %>
+          <% if current_user&.id == @user.id %>
           <div class="user-info-edit-target">
-            <%#= link_to "目標金額を設定・編集", targets_path %>
+            <%= link_to "目標金額を設定・編集", "#" %>
           </div>
           <% end %>
         </div>
@@ -72,7 +72,7 @@
           </tr>
           <% end %>
         </table>
-        <% if user_signed_in? && current_user.id == @user.id %>
+        <% if current_user&.id == @user.id %>
         <div class="user-info-edit-profile">
           <%= link_to "プロフィールを編集", "#" %>
         </div>
