@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :move_to_index, only: [:new, :edit]
+
   def new
     @profile = Profile.new
   end

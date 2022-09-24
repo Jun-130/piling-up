@@ -1,5 +1,7 @@
 class TargetsController < ApplicationController
   before_action :move_to_profile_new
+  before_action :authenticate_user!, only: :index
+  before_action :move_to_index, only: :index
 
   def index
     @targets = Target.order(created_at: :desc)
@@ -21,6 +23,10 @@ class TargetsController < ApplicationController
     if user_signed_in? && current_user.profile.nil?
       redirect_to new_profile_path
     end
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user.id != @post.user_id
   end
 
   def target_params

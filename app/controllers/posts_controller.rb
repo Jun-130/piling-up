@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :move_to_profile_new
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :move_to_index, only: [:edit, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -49,6 +51,10 @@ class PostsController < ApplicationController
     if user_signed_in? && current_user.profile.nil?
       redirect_to new_profile_path
     end
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user.id != @post.user_id
   end
 
   def set_post
