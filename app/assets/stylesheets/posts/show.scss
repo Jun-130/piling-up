@@ -41,7 +41,11 @@
   border-top: 15px #e1eec1 double;
   border-bottom: 6px #e1eec1 solid;
 }
-.edit-post{
+.post-link{
+  display: flex;
+}
+.edit-post, .destroy-post{
+  flex: display;
   margin: 10px 0 0 auto;
   width: 80px;
   line-height: 18px;
@@ -51,7 +55,10 @@
   border-radius: 5px;
 }
 .edit-post a{
-  color: #5b5c76;
+  color: #518c84;
+}
+.destroy-post a{
+  color: #f37053;
 }
 .table-profile{
   color: #5b5c76;

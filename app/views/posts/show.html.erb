@@ -78,8 +78,13 @@
           </tr>
         </table>
         <% if current_user&.id == @post.user.id %>
-        <div class="edit-post">
-          <%= link_to "収支を編集", edit_post_path %>
+        <div class="post-link">
+          <div class="edit-post">
+            <%= link_to "収支を編集", edit_post_path %>
+          </div>
+          <div class="destroy-post">
+            <%= link_to "収支を削除", post_path, method: :delete %>
+          </div>
         </div>
         <% end %>
         <br>
