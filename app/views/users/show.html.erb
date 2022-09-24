@@ -14,7 +14,7 @@
           </div>
           <% if current_user&.id == @user.id %>
           <div class="user-info-edit-account">
-            <%= link_to "アカウント情報を編集", edit_user_registration_path %>
+            <%= link_to "アカウント情報を編集", "#" %>
           </div>
           <% end %>
         </div>
@@ -30,12 +30,18 @@
           </div>
         </div>
         <div class="user-info-top__right-bottom">
+          <% if @target.present? %>
           <div class="user-info-target">
-            貯金目標 :　<span><%#= 直近のtarget.deadline %>20XX年XX月までに<%#= 直近のtarget.amount %>XXXXXX円貯める！</span>
+            貯金目標 :　<span><%= @target.deadline.strftime("%Y年%-m月") %>までに<%= @target.amount.to_s(:delimited) %>円貯める！</span>
           </div>
+          <% else %>
+          <div class="user-info-target target-nil">
+            現在、貯金目標額は未設定です。
+          </div>
+          <% end %>
           <% if current_user&.id == @user.id %>
           <div class="user-info-edit-target">
-            <%= link_to "目標金額を設定・編集", "#" %>
+            <%= link_to "目標金額を設定・編集", targets_path %>
           </div>
           <% end %>
         </div>
@@ -84,7 +90,7 @@
           </tr>
           <tr class="user-info-current_savings">
             <td class="td-profile-label">現在の貯金額</td>
-            <td class="td-profile">:　<%#= 当初の貯金額+現在までのbalanceの合計 %>円</td>
+            <td class="td-profile">:　<%= @current_savings.to_s(:delimited) %>円</td>
           </tr>
         </table>
       </div>
@@ -96,7 +102,7 @@
     </div>
     <div class="user-posts">
       <div class="posts">
-        <%#= render partial: 'shared/post', collection: @user.posts %>
+        <%= render partial: 'shared/post', collection: @user.posts %>
       </div>
     </div>
   </div>

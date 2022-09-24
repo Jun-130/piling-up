@@ -13,14 +13,14 @@
           <% unless @post.balance.amount <= 0 %>
           今月の貯金額は手取り<span>の<%= @post.saving_rate %>％ </span>　
             <% if (@post.balance.amount >= @post.fixed_profile.monthly_target) %>
-            <span>月の目標額 (<%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円) を達成！</span>
+            <span>月の目標額(<%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円)を達成！</span>
             <% else %>
-            月の目標額 (<%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円) は未達成
+            月の目標額(<%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円)は未達成
             <% end %>
           <% end %>
           <br><br>
-          <% unless @post.fixed_profile.target.nil? %>
-          目標金額の<%= @post.fixed_profile.target.to_s(:delimited) %>円まで、あと <strong><%= (@post.fixed_profile.target - @post.balance.amount).to_s(:delimited) %>円 </strong>💪
+          <% if @post.fixed_profile.target.present? %>
+          貯金目標額の<%= @post.fixed_profile.target.to_s(:delimited) %>円まで、あと <strong><%= (@post.fixed_profile.target - @current_savings).to_s(:delimited) %>円 </strong>💪
           <% end %>
         </div>
         <div class="post-text-show">
@@ -32,12 +32,10 @@
           <%= @post.month.strftime("%Y年%-m月") %>
         </div>
         <table>
-          <% unless @post.net_income <= 0 %>
           <tr>
             <td class="td income">手取り収入</td>
             <td class="td price income"><%= @post.net_income.to_s(:delimited) %></td>
           </tr>
-          <% end %>
           <tr>
             <th class="th">支出費目</th>
             <th class="th">支出金額</th>
@@ -74,12 +72,10 @@
             <td class="td total">合計</td>
             <td class="td price total"><%= @post.expenses.to_s(:delimited) %></td>
           </tr>
-          <% unless @post.balance.amount <= 0 %>
           <tr>
-            <td class="td saving">貯金額</td>
+            <td class="td saving">損益</td>
             <td class="td price saving"><%= @post.balance.amount.to_s(:delimited) %></td>
           </tr>
-          <% end %>
         </table>
         <br><br>
         <div class="table-profile">

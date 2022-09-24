@@ -11,49 +11,42 @@
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">年齢</label>
-      <span class="indispensable">必須</span>
     </div>
     <%= f.collection_select(:age_id, Age.all, :id, :name, {include_blank: "---"}, {class:"select-box"}) %>
   </div>
     <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">性別</label>
-      <span class="indispensable">必須</span>
     </div>
     <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "---"}, {class:"select-box"}) %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">世帯構成</label>
-      <span class="indispensable">必須</span>
     </div>
     <%= f.collection_select(:household_id, Household.all, :id, :name, {include_blank: "---"}, {class:"select-box"}) %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">年収</label>
-      <span class="indispensable">必須</span>
     </div>
     <%= f.collection_select(:annual_income_id, AnnualIncome.all, :id, :name, {include_blank: "---"}, {class:"select-box"}) %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text">お住まいの都道府県</label>
-      <span class="indispensable">必須</span>
+      <label class="form-text">在住の都道府県</label>
     </div>
     <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"select-box"}) %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">毎月の貯金目標額</label>
-      <span class="indispensable">必須</span>
     </div>
     <%= f.text_area :monthly_target, class:"input-default", id:"monthly_target" %>
   </div>
 
-  <br>
-  <div class='register-btn'>
-    <%= f.submit "プロフィール情報登録" ,class:"register-red-btn" %>
+  <div class='form-btn'>
+    <%= f.submit "プロフィール情報登録" ,class:"btn" %>
   </div>
 </div>
 <% end %>

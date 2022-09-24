@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :move_to_profile_new, except: :index
+  before_action :move_to_profile_new
 
   def index
     @posts = Post.includes(:user)
@@ -21,12 +21,15 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # 投稿した収支の年月までの、@post.userの損益の合計
+    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: @post.user_id).where("month <= ?", @post.month.to_date)&.sum(:amount)
+    @current_savings = @post.user.initial_savings + balance_total
   end
 
   private
 
   def move_to_profile_new
-    unless !user_signed_in? || (user_signed_in? && current_user.profile.present?)
+    if user_signed_in? && current_user.profile.nil?
       redirect_to new_profile_path
     end
   end
@@ -37,7 +40,7 @@ class PostsController < ApplicationController
     target = current_user.targets.find_by(status: 0)
     FixedProfile.create(
       age: profile.age.name, gender: profile.gender.name, household: profile.household.name, annual_income: profile.annual_income.name, prefecture: profile.prefecture.name,
-      monthly_target: profile.monthly_target, target: target&.amount, post_id: @post.id
+      monthly_target: profile.monthly_target, target_deadline: target&.deadline, target_amount: target&.amount, post_id: @post.id
     )
   end
 
