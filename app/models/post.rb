@@ -26,4 +26,19 @@ class Post < ApplicationRecord
   def saving_rate
     (self.balance.amount.to_f / self.net_income.to_f * 100).round
   end
+
+  def current_savings
+    # 投稿した収支の年月までの、投稿者の残高の合計
+    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: self.user_id).where("month <= ?", self.month.to_date)&.sum(:amount)
+    return (self.user.initial_savings + balance_total)
+  end
+
+  def check_target_achievement
+    target = self.user.targets&.last
+    if self.fixed_profile.target.present? && self.fixed_profile.target <= self.current_savings && target.status == 0
+      target.update(status: 1)
+    elsif self.fixed_profile.target.present? && self.fixed_profile.target > self.current_savings && target.status == 1
+      target.update(status: 0)
+    end
+  end
 end

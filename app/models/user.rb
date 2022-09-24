@@ -14,4 +14,19 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :initial_savings, presence: true
+
+  def current_savings
+    # userのこれまでの残高の合計
+    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: self.id)&.sum(:amount)
+    return (self.initial_savings + balance_total)
+  end
+
+  def check_target_achievement
+    target = self.targets&.last
+    if target.present? && target.amount <= self.current_savings && target.status == 0
+      target.update(status: 1)
+    elsif target.present? && target.amount > self.current_savings && target.status == 1
+      target.update(status: 0)
+    end
+  end
 end

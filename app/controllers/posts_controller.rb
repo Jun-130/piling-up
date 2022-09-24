@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   before_action :move_to_profile_new
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :move_to_index, only: [:edit, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :destroy]
 
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.includes(:user, :balance, :fixed_profile)
   end
 
   def new
@@ -16,16 +16,16 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       create_balance_and_fixed_profile
-      redirect_to root_path
+      @post.check_target_achievement
+      redirect_to post_path(@post)
     else
       render :new
     end
   end
 
   def show
-    # 投稿した収支の年月までの、@post.userの損益の合計
-    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: @post.user_id).where("month <= ?", @post.month.to_date)&.sum(:amount)
-    @current_savings = @post.user.initial_savings + balance_total
+    @current_savings = @post.current_savings
+    @fixed_profile = @post.fixed_profile
   end
 
   def edit
@@ -34,6 +34,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       update_balance
+      @post.check_target_achievement
       redirect_to post_path(@post)
     else
       render :edit
@@ -42,6 +43,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    @post.user.check_target_achievement
     redirect_to root_path
   end
 
@@ -67,7 +69,7 @@ class PostsController < ApplicationController
     target = current_user.targets.find_by(status: 0)
     FixedProfile.create(
       age: profile.age.name, gender: profile.gender.name, household: profile.household.name, annual_income: profile.annual_income.name, prefecture: profile.prefecture.name,
-      monthly_target: profile.monthly_target, target_deadline: target&.deadline, target_amount: target&.amount, post_id: @post.id
+      monthly_target: profile.monthly_target, target: target&.amount, post_id: @post.id
     )
   end
 

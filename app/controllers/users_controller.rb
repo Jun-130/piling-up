@@ -6,9 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: @user.id)
     @target = @user.targets.find_by(status: 0)
-    # @userのこれまでの損益の合計
-    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: @user.id)&.sum(:amount)
-    @current_savings = @user.initial_savings + balance_total
+    @current_savings = @user.current_savings
   end
 
   private

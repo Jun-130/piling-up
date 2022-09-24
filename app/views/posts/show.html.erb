@@ -12,15 +12,19 @@
         <div class="monthly-saving">
           <% unless @post.balance.amount <= 0 %>
           今月の貯金額は手取り<span>の <%= @post.saving_rate %>％、</span>
-            <% if (@post.balance.amount >= @post.fixed_profile.monthly_target) %>
-            <span>月の目標額 <%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円 を達成</span>
+            <% if (@post.balance.amount >= @fixed_profile.monthly_target) %>
+            <span>月の目標額 <%= @fixed_profile.monthly_target.to_s(:delimited) %>円 を達成！</span>
             <% else %>
-            月の目標額(<%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円)は未達成
+            月の目標額 <%= @fixed_profile.monthly_target.to_s(:delimited) %>円 は未達成
             <% end %>
           <% end %>
           <br><br>
-          <% if @post.fixed_profile.target.present? %>
-          貯金目標額の<%= @post.fixed_profile.target.to_s(:delimited) %>円まで、あと <strong><%= (@post.fixed_profile.target - @current_savings).to_s(:delimited) %>円 </strong>💪
+          <% if @fixed_profile.target.present? %>
+            <% if (@fixed_profile.target > @post.current_savings) %>
+              貯金目標額の<%= @fixed_profile.target.to_s(:delimited) %>円まで、あと <strong><%= (@fixed_profile.target - @current_savings).to_s(:delimited) %>円 </strong>💪
+            <% elsif (@fixed_profile.target <= @post.current_savings) %>
+              <strong>貯金目標額の<%= @fixed_profile.target.to_s(:delimited) %>円を達成しました！</strong>🎉🎉🎉
+            <% end %>
           <% end %>
         </div>
         <div class="post-text-show">
@@ -73,7 +77,7 @@
             <td class="td price total"><%= @post.expenses.to_s(:delimited) %></td>
           </tr>
           <tr>
-            <td class="td saving">損益</td>
+            <td class="td saving">残高</td>
             <td class="td price saving"><%= @post.balance.amount.to_s(:delimited) %></td>
           </tr>
         </table>
@@ -92,19 +96,19 @@
           <%= link_to " #{@post.user.nickname}", user_path(@post.user), class: "table-profile-name" %>
         </div>
         <div class="table-profile">
-          <%= @post.fixed_profile.prefecture %> 在住
+          <%= @fixed_profile.prefecture %> 在住
         </div>
         <div class="table-profile">
-          <%= @post.fixed_profile.household %>
+          <%= @fixed_profile.household %>
         </div>
         <div class="table-profile">
-          <%= @post.fixed_profile.age %>
+          <%= @fixed_profile.age %>
         </div>
         <div class="table-profile">
-          <%= @post.fixed_profile.gender %>
+          <%= @fixed_profile.gender %>
         </div>
         <div class="table-profile">
-          年収: <%= @post.fixed_profile.annual_income %>
+          年収: <%= @fixed_profile.annual_income %>
         </div>
       </div>
     </div>

@@ -1,10 +1,9 @@
 class TargetsController < ApplicationController
   before_action :move_to_profile_new
   before_action :authenticate_user!, only: :index
-  before_action :move_to_index, only: :index
 
   def index
-    @targets = Target.order(created_at: :desc)
+    @targets = Target.where(user_id: current_user.id).order(created_at: :desc)
     @target = Target.new
   end
 
