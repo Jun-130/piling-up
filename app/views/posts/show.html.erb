@@ -1,0 +1,107 @@
+<div class="posts-show">
+  <div class="post-show">
+
+    <div class="income_expenses">
+      <div class="pie-chart" >
+        <div class='pie-chart-show' >
+          <%= pie_chart @post.chart_items,
+                        width: '700px',
+                        height: '350px',
+                        colors: ['#fabea7','#94bcb7','#fdbf64','#8aa3b9','#fff700','#aeb5dc','#e5b7be','#d0e39b'] %>
+        </div>
+        <div class="monthly-saving">
+          <% unless @post.balance.amount <= 0 %>
+          今月の貯金額は手取り<span>の<%= @post.saving_rate %>％ </span>　
+            <% if (@post.balance.amount >= @post.fixed_profile.monthly_target) %>
+            <span>月の目標額 (<%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円) を達成！</span>
+            <% else %>
+            月の目標額 (<%= @post.fixed_profile.monthly_target.to_s(:delimited) %>円) は未達成
+            <% end %>
+          <% end %>
+          <br><br>
+          <% unless @post.fixed_profile.target.nil? %>
+          目標金額の<%= @post.fixed_profile.target.to_s(:delimited) %>円まで、あと <strong><%= (@post.fixed_profile.target - @post.balance.amount).to_s(:delimited) %>円 </strong>💪
+          <% end %>
+        </div>
+        <div class="post-text-show">
+        </div>
+      </div>
+
+      <div class="table-expenses">
+        <div class="pie-year-month-show">
+          <%= @post.month.strftime("%Y年%-m月") %>
+        </div>
+        <table>
+          <% unless @post.net_income <= 0 %>
+          <tr>
+            <td class="td income">手取り収入</td>
+            <td class="td price income"><%= @post.net_income.to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+          <tr>
+            <th class="th">支出費目</th>
+            <th class="th">支出金額</th>
+          </tr>
+          <tr>
+            <td class="td">家賃</td>
+            <td class="td price"><%= @post.housing.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="td">水道光熱費</td>
+            <td class="td price"><%= @post.utilities.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="td">通信費</td>
+            <td class="td price"><%= @post.internet.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="td">食費</td>
+            <td class="td price"><%= @post.groceries.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="td">日用品費</td>
+            <td class="td price"><%= @post.daily_necessities.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="td">娯楽費</td>
+            <td class="td price"><%= @post.entertainment.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="td">その他</td>
+            <td class="td price"><%= @post.others.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <td class="td total">合計</td>
+            <td class="td price total"><%= @post.expenses.to_s(:delimited) %></td>
+          </tr>
+          <% unless @post.balance.amount <= 0 %>
+          <tr>
+            <td class="td saving">貯金額</td>
+            <td class="td price saving"><%= @post.balance.amount.to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+        </table>
+        <br><br>
+        <div class="table-profile">
+          <%= link_to " #{@post.user.nickname}", user_path(@post.user), class: "table-profile-name" %>
+        </div>
+        <div class="table-profile">
+          <%= @post.fixed_profile.prefecture %> 在住
+        </div>
+        <div class="table-profile">
+          <%= @post.fixed_profile.household %>
+        </div>
+        <div class="table-profile">
+          <%= @post.fixed_profile.age %>
+        </div>
+        <div class="table-profile">
+          <%= @post.fixed_profile.gender %>
+        </div>
+        <div class="table-profile">
+          年収: <%= @post.fixed_profile.annual_income %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -6,7 +6,7 @@
       <%= post.month.strftime("%Y年%-m月") %>
     </div>
     <div class="pie-chart">
-      <%= pie_chart post.pie_chart,
+      <%= pie_chart post.chart_items,
                     width: '445px',
                     height: '250px',
                     colors: ['#fabea7','#94bcb7','#fdbf64','#8aa3b9','#fff700','#aeb5dc','#e5b7be','#d0e39b'] %>
@@ -16,7 +16,7 @@
     <table>
       <tr class="expenses-total">
         <td>支出額合計: </td>
-        <td><%= post.calculate_expenses.to_s(:delimited) %>円</td>
+        <td><%= post.expenses.to_s(:delimited) %>円</td>
       </tr>
     </table>
   </div>
