@@ -10,6 +10,10 @@ class Post < ApplicationRecord
             :groceries, :daily_necessities, :entertainment, :others,
             numericality: {only_integer: true}
 
+  def pie_chart
+    {'家賃': self.housing, '水道光熱費': self.utilities, '通信費': self.internet, '食費': self.groceries, '日用品費': self.daily_necessities, '娯楽費': self.entertainment, 'その他出費': self.others, '貯金': self.balance.amount}
+  end
+
   def calculate_expenses
     expenses = (
                 + self.housing

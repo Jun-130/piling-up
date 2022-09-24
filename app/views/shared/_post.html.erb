@@ -1,0 +1,26 @@
+<div class="post-index">
+  <div class='pie-chart-index' >
+    <%= link_to " #{post.user.nickname}", user_path(post.user), class: "pie-user-name" %>
+    <%= link_to post_path(post) do %>
+    <div class="pie-year-month-index">
+      <%= post.month.strftime("%Y年%-m月") %>
+    </div>
+    <div class="pie-chart">
+      <%= pie_chart post.pie_chart,
+                    width: '445px',
+                    height: '250px',
+                    colors: ['#fabea7','#94bcb7','#fdbf64','#8aa3b9','#fff700','#aeb5dc','#e5b7be','#d0e39b'] %>
+    </div>
+  </div>
+  <div class="expenses-total-table">
+    <table>
+      <tr class="expenses-total">
+        <td>支出額合計: </td>
+        <td><%= post.calculate_expenses.to_s(:delimited) %>円</td>
+      </tr>
+    </table>
+  </div>
+  <div class="post-text">
+  </div>
+  <% end %>
+</div>

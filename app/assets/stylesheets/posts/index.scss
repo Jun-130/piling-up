@@ -1,0 +1,71 @@
+.posts-index{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.posts{
+  display: grid;
+  grid-template-columns: 450px 450px;
+  gap: 45px
+}
+.post-index{
+  background-color: white;
+  border: 2px #e1eec1 solid;
+  border-radius: 10px;
+  box-shadow: 0 0px 5px 0 #e1eec1;
+  padding-top: 5px;
+}
+.post-index:hover{
+  box-shadow: 4px 4px 6px 5px #e1eec1;
+}
+.pie-user-name{
+  line-height: 30px;
+  color:  #404448;
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.2em;
+  padding-left: 10px;
+}
+.pie-user-name:before{
+  font-family: 'Material Icons Outlined';
+  content: '\e853';
+  font-size: 28px;
+  display: inline-flex;
+  vertical-align: middle;
+}
+.pie-user-name:hover{
+  opacity: 0.5;
+}
+.pie-year-month-index{
+  text-align: right;
+  color: #5b5c76;
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.2em;
+  padding-right: 20px;
+}
+.pie-chart{
+  padding: 5px 0;
+}
+.post-total-table{
+  display: flex;
+  justify-content: right;
+  padding-right: 11px;
+}
+.expenses-total{
+  color: #404448;
+  text-align: right;
+  font-size: 0.9em;
+  margin: 7px;
+}
+.expenses-total td{
+  padding: 4px 10px 3px 8px;
+  width: 100px;
+}
+.post-text{
+  width: 420px;
+  height: 100px;
+  margin: 10px auto 15px;
+  padding: 0.4em 1.6em;
+  border: 2px #e1eec1 solid;
+  border-radius: 10px;
+  color: #5b5c76;
+}
