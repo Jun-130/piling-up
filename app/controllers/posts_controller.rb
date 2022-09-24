@@ -26,6 +26,20 @@ class PostsController < ApplicationController
     @current_savings = @post.user.initial_savings + balance_total
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+  
+  def update
+    @post = Post.find(params[:id])
+    update_balance
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def move_to_profile_new
@@ -42,6 +56,11 @@ class PostsController < ApplicationController
       age: profile.age.name, gender: profile.gender.name, household: profile.household.name, annual_income: profile.annual_income.name, prefecture: profile.prefecture.name,
       monthly_target: profile.monthly_target, target_deadline: target&.deadline, target_amount: target&.amount, post_id: @post.id
     )
+  end
+
+  def update_balance
+    balance = Balance.find(@post.id)
+    balance.update(amount: @post.calculate_balance)
   end
 
   def post_params

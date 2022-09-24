@@ -2,15 +2,18 @@
 <div class='form-wrap'>
   <div class='form-header'>
     <h1 class='form-header-text'>
-      収支の入力
+      収支の編集
     </h1>
+    <div class="post-edit-notice">
+      ※編集後もプロフィール情報は最初に投稿した時点のものとなります。
+    </div>
   </div>
 
   <%= render 'shared/error_messages', model: f.object %>
   <%= render 'shared/post_form', f: f %>
 
   <div class='form-btn'>
-    <%= f.submit "収支投稿" ,class:"btn" %>
+  <%= f.submit "収支更新" ,class:"btn" %>
   </div>
 </div>
 <% end %>

@@ -41,6 +41,18 @@
   border-top: 15px #e1eec1 double;
   border-bottom: 6px #e1eec1 solid;
 }
+.edit-post{
+  margin: 10px 0 0 auto;
+  width: 80px;
+  line-height: 18px;
+  padding: 6px 4px 3px 6px;
+  font-size: 0.8em;
+  border: 1px #dddddd solid;
+  border-radius: 5px;
+}
+.edit-post a{
+  color: #5b5c76;
+}
 .table-profile{
   color: #5b5c76;
   text-align: right;
@@ -67,11 +79,11 @@
 }
 .monthly-saving{
   color: #5b5c76;
-  font-size: 0.95em;
-  margin-top: 5px;
+  font-size: 1em;
+  margin: 5px 0 0 10px;
+  font-family: 'Kanit', sans-serif;
 }
 .monthly-saving span{
-  box-shadow: 0 6px 6px -5px #00a096;
 }
 .post-text-show{
   width: 550px;
