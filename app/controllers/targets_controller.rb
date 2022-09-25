@@ -12,6 +12,7 @@ class TargetsController < ApplicationController
     if @target.save
       redirect_to user_path(current_user)
     else
+      @targets = Target.where(user_id: current_user.id).order(created_at: :desc)
       render :index
     end
   end

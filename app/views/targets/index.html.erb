@@ -25,10 +25,10 @@
     <div class='form-text-wrap'>
       <label class="form-text">目標金額</label>
     </div>
-    <%= f.text_area :amount %>
+    <%= f.number_field :amount %>
   </div>
 
-  <%= f.hidden_field :status, value: 0 %>
+  <%= f.hidden_field :completed, value: false %>
 
   <br>
   <div class='form-btn'>

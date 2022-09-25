@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2022_09_23_080829) do
   create_table "targets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "deadline", null: false
     t.integer "amount", null: false
-    t.integer "status", null: false
+    t.boolean "completed", default: false, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

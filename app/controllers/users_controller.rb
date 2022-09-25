@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: @user.id)
-    @target = @user.targets.find_by(status: 0)
+    @target = @user.targets.find_by(completed: false)
     @current_savings = @user.current_savings
   end
 
