@@ -16,47 +16,47 @@
   <div class='form-text-wrap'>
     <label class="form-text">手取り収入</label>
   </div>
-  <%= f.text_area :net_income %>
+  <%= f.number_field :net_income, data: { autonumeric: true } %>
 </div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">住宅費</label>
   </div>
-  <%= f.text_area :housing %>
+  <%= f.number_field :housing, data: { autonumeric: true } %>
 </div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">水道光熱費</label>
   </div>
-  <%= f.text_area :utilities %>
+  <%= f.number_field :utilities, data: { autonumeric: true } %>
 </div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">通信費</label>
   </div>
-  <%= f.text_area :internet %>
+  <%= f.number_field :internet, data: { autonumeric: true } %>
 </div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">食費</label>
   </div>
-  <%= f.text_area :groceries %>
+  <%= f.number_field :groceries, data: { autonumeric: true } %>
 </div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">日用品費</label>
   </div>
-  <%= f.text_area :daily_necessities %>
+  <%= f.number_field :daily_necessitie, data: { autonumeric: true } %>
 </div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">娯楽費</label>
   </div>
-  <%= f.text_area :entertainment %>
+  <%= f.number_field :entertainment, data: { autonumeric: true } %>
 </div>
 <div class="form-group">
   <div class='form-text-wrap'>
     <label class="form-text">その他出費</label>
   </div>
-  <%= f.text_area :others %>
+  <%= f.number_field :others, data: { autonumeric: true } %>
 </div>
