@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_one :balance, dependent: :destroy
   has_one :fixed_profile, dependent: :destroy
 
+  validates :month, uniqueness: { scope: :user }
   validates :month, :net_income, :housing, :utilities, :internet,
             :groceries, :daily_necessities, :entertainment, :others,
             presence: true 
@@ -28,17 +29,33 @@ class Post < ApplicationRecord
   end
 
   def current_savings
-    # 投稿した収支の年月までの、投稿者の残高の合計
+    # balance_total: 投稿した収支の年月までの、投稿者の残高の合計
     balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: self.user_id).where("month <= ?", self.month.to_date)&.sum(:amount)
     return (self.user.initial_savings + balance_total)
   end
 
-  def check_target_achievement
+  def check_target_achievement_when_create
+    if self.fixed_profile.target.present? && self.fixed_profile.target <= self.current_savings
+      target.update(completed: true)
+    end
+  end
+
+  def check_target_achievement_when_update
     target = self.user.targets&.last
-    if self.fixed_profile.target.present? && self.fixed_profile.target <= self.current_savings && target.status == 0
-      target.update(status: 1)
-    elsif self.fixed_profile.target.present? && self.fixed_profile.target > self.current_savings && target.status == 1
-      target.update(status: 0)
+    if (
+      self.fixed_profile.target.present? &&
+      self.fixed_profile.target <= self.current_savings &&
+      self.fixed_profile.target == target.amount &&
+      target.completed == false
+      )
+      target.update(completed: true)
+    elsif (
+      self.fixed_profile.target.present? &&
+      self.fixed_profile.target > self.current_savings &&
+      self.fixed_profile.target == target.amount &&
+      target.completed == true
+      )
+      target.update(completed: false)
     end
   end
 end
