@@ -80,7 +80,7 @@
         </table>
         <% if current_user&.id == @user.id %>
         <div class="user-info-edit-profile">
-          <%= link_to "プロフィールを編集", edit_profile_path %>
+          <%= link_to "プロフィールを編集", edit_profile_path(@profile) %>
         </div>
         <% end %>
         <table>
@@ -98,7 +98,7 @@
         <div class="user-info-introduction">
           <% if @introduction&.title1 %>
           <div class="introduction-title title1">
-            ⭐️ <%= @introduction.&title1 %>
+            ⭐️ <%= @introduction&.title1 %>
           </div>
           <% end %>
           <div class="introduction-content content1">
@@ -117,15 +117,15 @@
           <% if @introduction.present? %>
           <div class="introduction-present">
             <div class="edit-introduction">
-              <%= link_to "自己紹介を編集", edit_introduction_path %>
+              <%= link_to "自己紹介を編集", edit_introduction_path(@introduction) %>
             </div>
             <div class="destroy-introduction">
-              <%= link_to "自己紹介を削除", introduction_path, method: :delete %>
+              <%= link_to "自己紹介を削除", introduction_path(@introduction), method: :delete %>
             </div>
           </div>
           <% else %>
           <div class="create-introduction">
-            <%= link_to "自己紹介を設定", new_introduction_path %>
+            <%= link_to "自己紹介を登録", new_introduction_path %>
           </div>
           <% end %>
         <% end %>

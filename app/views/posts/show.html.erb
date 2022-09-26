@@ -84,10 +84,10 @@
         <% if current_user&.id == @post.user.id %>
         <div class="post-link">
           <div class="edit-post">
-            <%= link_to "収支を編集", edit_post_path %>
+            <%= link_to "収支を編集", edit_post_path(@post) %>
           </div>
           <div class="destroy-post">
-            <%= link_to "収支を削除", post_path, method: :delete %>
+            <%= link_to "収支を削除", post_path(@post), method: :delete %>
           </div>
         </div>
         <% end %>
