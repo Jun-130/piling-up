@@ -69,10 +69,9 @@
   font-size: 0.9em;
 }
 .user-info-edit-target{
-  width: 145px;
   height: 30px;
   line-height: 18px;
-  padding: 5px 0 4px 0;
+  padding: 6px 5px 4px 5px;
   font-size: 0.8em;
   border: 1px #dddddd solid;
   border-radius: 5px;
@@ -106,12 +105,15 @@
 .user-info-edit-profile a{
   color: gray;
 }
+.user-info-bottom__right{
+  width: 600px;
+}
 .user-info-introduction{
   color: #404448;
   font-size: 0.9em;
 }
 .introduction-content{
-  margin: 12px 0;
+  margin: 12px 0 16px 0;
 }
 .introduction-present{
   display: flex;
