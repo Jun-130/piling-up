@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile = Profile.find_by(user_id: @user.id)
+    @introduction = Introduction.find_by(user_id: @user.id)
     @target = @user.targets.find_by(completed: false)
     @current_savings = @user.current_savings
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_23_080829) do
+ActiveRecord::Schema.define(version: 2022_09_26_080807) do
 
   create_table "balances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "amount", null: false
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 2022_09_23_080829) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_fixed_profiles_on_post_id"
+  end
+
+  create_table "introductions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title1", null: false
+    t.text "content1", null: false
+    t.string "title2"
+    t.text "content2"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_introductions_on_user_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -89,6 +100,7 @@ ActiveRecord::Schema.define(version: 2022_09_23_080829) do
 
   add_foreign_key "balances", "posts"
   add_foreign_key "fixed_profiles", "posts"
+  add_foreign_key "introductions", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "targets", "users"

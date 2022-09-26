@@ -96,8 +96,39 @@
       </div>
       <div class="user-info-bottom__right">
         <div class="user-info-introduction">
-          自己紹介
+          <% if @introduction&.title1 %>
+          <div class="introduction-title title1">
+            ⭐️ <%= @introduction.&title1 %>
+          </div>
+          <% end %>
+          <div class="introduction-content content1">
+            <%= @introduction&.content1 %>
+          </div>
+          <% if @introduction&.title2 %>
+          <div class="introduction-title title2">
+            ⭐️ <%= @introduction&.title2 %>
+          </div>
+          <% end %>
+          <div class="introduction-content title2">
+            <%= @introduction&.content2 %>
+          </div>
         </div>
+        <% if current_user&.id == @user.id %>
+          <% if @introduction.present? %>
+          <div class="introduction-present">
+            <div class="edit-introduction">
+              <%= link_to "自己紹介を編集", edit_introduction_path %>
+            </div>
+            <div class="destroy-introduction">
+              <%= link_to "自己紹介を削除", introduction_path, method: :delete %>
+            </div>
+          </div>
+          <% else %>
+          <div class="create-introduction">
+            <%= link_to "自己紹介を設定", new_introduction_path %>
+          </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="user-posts">

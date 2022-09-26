@@ -25,10 +25,6 @@ class TargetsController < ApplicationController
     end
   end
 
-  def move_to_index
-    redirect_to root_path if current_user.id != @post.user_id
-  end
-
   def target_params
     params.require(:target).permit(:deadline, :amount, :status).merge(user_id: current_user.id)
   end

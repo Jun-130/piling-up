@@ -44,7 +44,7 @@
   border-radius: 5px;
 }
 .user-info-edit-account a{
-  color: #518c84;
+  color: gray;
 }
 .number{
   margin-right: 30px;
@@ -80,7 +80,7 @@
   margin-top: 19px;
 }
 .user-info-edit-target a{
-  color: #518c84;
+  color: gray;
 }
 .user-info-bottom{
   margin-top: 35px;
@@ -93,8 +93,6 @@
 .td-profile-label{
   width: 118px;
 }
-.user-info-bottom__right{
-}
 .user-info-edit-profile{
   line-height: 17px;
   padding: 5px 0 4px 0;
@@ -106,11 +104,35 @@
   margin-bottom: 11px;
 }
 .user-info-edit-profile a{
-  color: #518c84;
+  color: gray;
 }
 .user-info-introduction{
   color: #404448;
   font-size: 0.9em;
+}
+.introduction-content{
+  margin: 12px 0;
+}
+.introduction-present{
+  display: flex;
+}
+.edit-introduction, .destroy-introduction, .create-introduction{
+  line-height: 17px;
+  padding: 5px 0 4px 0;
+  font-size: 0.8em;
+  border: 1px #dddddd solid;
+  border-radius: 5px;
+  width: 105px;
+  text-align: center;
+}
+.edit-introduction{
+  margin-right: 10px;
+}
+.edit-introduction a, .create-introduction a{
+  color: gray;
+}
+.destroy-introduction a{
+  color: #f37053;
 }
 .user-posts{
   margin-top: 30px;

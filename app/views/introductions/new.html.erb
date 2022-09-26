@@ -1,0 +1,19 @@
+<%= form_with model: @introduction, class: 'registration-main', local: true do |f| %>
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      自己紹介入力
+    </h1>
+    <div class="post-edit-notice">
+      ※1つ目のみの入力でも登録可能です。
+    </div>
+  </div>
+
+  <%= render 'shared/error_messages', model: f.object %>
+  <%= render 'shared/introduction_form', f: f %>
+
+  <div class='form-btn'>
+  <%= f.submit "自己紹介登録" ,class:"btn" %>
+  </div>
+</div>
+<% end %>

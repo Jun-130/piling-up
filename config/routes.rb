@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :profiles, only: [:new, :create, :edit, :update]
   resources :targets, only: [:index, :create]
   resources :posts
+  resources :introductions, only: [:new, :create, :edit, :update, :destroy]
 end

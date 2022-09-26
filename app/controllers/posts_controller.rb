@@ -55,12 +55,12 @@ class PostsController < ApplicationController
     end
   end
 
-  def move_to_index
-    redirect_to root_path if current_user.id != @post.user_id
-  end
-
   def set_post
     @post = Post.find(params[:id])
+  end
+  
+  def move_to_index
+    redirect_to root_path if current_user.id != @post.user_id
   end
 
   def create_balance_and_fixed_profile
