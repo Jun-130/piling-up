@@ -49,6 +49,7 @@
   display: flex;
   justify-content: right;
   padding-right: 11px;
+  margin-bottom: 20px;
 }
 .expenses-total{
   color: #404448;
@@ -60,12 +61,13 @@
   padding: 4px 10px 3px 8px;
   width: 100px;
 }
-.post-text{
+.post-explanation-index{
   width: 420px;
   height: 100px;
-  margin: 10px auto 15px;
-  padding: 0.4em 1.6em;
+  margin: 0 auto 15px;
+  padding: 1.2em 1em;
   border: 2px #e1eec1 solid;
   border-radius: 10px;
   color: #5b5c76;
+  font-size: 0.8em;
 }

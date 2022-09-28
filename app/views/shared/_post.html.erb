@@ -20,7 +20,10 @@
       </tr>
     </table>
   </div>
-  <div class="post-text">
+  <% if post.explanation.present? %>
+  <div class="post-explanation-index">
+    <%= post.explanation.content %>
   </div>
+  <% end %>
   <% end %>
 </div>

@@ -27,7 +27,30 @@
             <% end %>
           <% end %>
         </div>
-        <div class="post-text-show">
+        <div class="post-explanation-show">
+          <div class="post-explanation-show__left">
+            <% if @explanation.present? %>
+              <div class="post-explanation">
+                <%= @explanation.content %>
+              </div>
+            <% else %>
+              <div class="create-explanation">
+                <%= link_to "説明を追加", new_post_explanation_path(@post) %>
+              </div>
+            <% end %>
+          </div>
+          <div class="post-explanation-show__right">
+            <% if current_user&.id == @post.user.id %>
+              <% if @explanation.present? %>
+              <div class="edit-explanation">
+                <%= link_to "説明を編集", edit_post_explanation_path(@post, @explanation) %>
+              </div>
+              <div class="destroy-explanation">
+                <%= link_to "説明を削除", post_explanation_path(@post, @explanation), method: :delete %>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
 

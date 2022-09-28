@@ -1,0 +1,19 @@
+<%= form_with model: [@post, @explanation], class: 'registration-main', local: true do |f| %>
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      収支の説明
+    </h1>
+    <div class="edit-notice">
+      ( 説明は追加しない → <%= link_to "収支詳細ページ", post_path(@post) %>へ )
+    </div>
+  </div>
+
+  <%= render 'shared/error_messages', model: f.object %>
+  <%= render 'shared/explanation_form', f: f %>
+
+  <div class='form-btn'>
+  <%= f.submit "登録" ,class:"btn" %>
+  </div>
+</div>
+<% end %>

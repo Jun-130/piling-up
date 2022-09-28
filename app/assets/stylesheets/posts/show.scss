@@ -44,20 +44,29 @@
 .post-link{
   display: flex;
 }
-.edit-post, .destroy-post{
+.edit-post, .destroy-post, .create-explanation,
+  .edit-explanation, .destroy-explanation{
   margin: 10px 0 0 auto;
-  width: 80px;
-  line-height: 18px;
-  padding: 6px 4px 3px 6px;
-  font-size: 0.8em;
+  padding: 6px;
+  font-size: 0.75em;
   border: 1px #dddddd solid;
   border-radius: 5px;
 }
-.edit-post a{
+.edit-post a, .create-explanation a, .edit-explanation a{
   color: #518c84;
 }
-.destroy-post a{
+.destroy-post a, .destroy-explanation a{
   color: #f37053;
+}
+.create-explanation{
+  margin: 20px 0 0 10px;
+  font-size: 0.85em;
+}
+.edit-explanation{
+  margin: 46px 0 12px 12px;
+}
+.destroy-explanation{
+  margin-left: 12px;
 }
 .table-profile{
   color: #5b5c76;
@@ -89,12 +98,16 @@
   margin: 5px 0 0 10px;
   font-family: 'Kanit', sans-serif;
 }
-.post-text-show{
-  width: 550px;
+.post-explanation-show{
+  display: flex;
+}
+.post-explanation{
+  width: 560px;
   height: 120px;
   margin-top: 20px;
-  padding: 0.4em 1.6em;
+  padding: 1em 1em;
   border: 2px #e1eec1 solid;
   border-radius: 10px;
   color: #5b5c76;
+  font-size: 0.85em;
 }

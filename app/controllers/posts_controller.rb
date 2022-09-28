@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :move_to_index, only: [:edit, :destroy]
 
   def index
-    @posts = Post.order(created_at: :desc).includes(:user, :balance, :fixed_profile)
+    @posts = Post.order(created_at: :desc).includes(:user, :balance, :fixed_profile, :explanation)
   end
 
   def new
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     if @post.save
       create_balance_and_fixed_profile
       @post.check_target_achievement_when_create
-      redirect_to post_path(@post)
+      redirect_to new_post_explanation_path(@post)
     else
       render :new
     end
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   def show
     @current_savings = @post.current_savings
     @fixed_profile = @post.fixed_profile
+    @explanation = @post.explanation
   end
 
   def edit
@@ -58,7 +59,7 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
-  
+
   def move_to_index
     redirect_to root_path if current_user.id != @post.user_id
   end
