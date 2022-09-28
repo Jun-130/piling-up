@@ -31,12 +31,14 @@
           <div class="post-explanation-show__left">
             <% if @explanation.present? %>
               <div class="post-explanation">
-                <%= @explanation.content %>
+                <%= @explanation.text %>
               </div>
             <% else %>
+              <% if current_user&.id == @post.user.id %>
               <div class="create-explanation">
                 <%= link_to "説明を追加", new_post_explanation_path(@post) %>
               </div>
+              <% end %>
             <% end %>
           </div>
           <div class="post-explanation-show__right">

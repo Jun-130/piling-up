@@ -48,6 +48,6 @@ class ExplanationsController < ApplicationController
   end
 
   def explanation_params
-    params.require(:explanation).permit(:content).merge(post_id: params[:post_id])
+    params.require(:explanation).permit(:text).merge(post_id: params[:post_id])
   end
 end

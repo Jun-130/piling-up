@@ -55,6 +55,6 @@ class IntroductionsController < ApplicationController
   end
 
   def introduction_params
-    params.require(:introduction).permit(:title1, :content1, :title2, :content2).merge(user_id: current_user.id)
+    params.require(:introduction).permit(:title1, :text1, :title2, :text2).merge(user_id: current_user.id)
   end
 end
