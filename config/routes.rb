@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   resources :targets, only: [:index, :create]
   resources :posts do
     resources :explanations, only: [:new, :create, :edit, :update, :destroy]
+    resources :comments, only: :create
+    resource  :likes, only: [:create, :destroy]
   end
 end

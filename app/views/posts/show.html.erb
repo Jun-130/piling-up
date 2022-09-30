@@ -1,8 +1,8 @@
 <div class="posts-show">
   <div class="post-show">
 
-    <div class="income_expenses">
-      <div class="pie-chart" >
+    <div class="post-show-main">
+      <div class="post-show__left" >
         <div class='pie-chart-show' >
           <%= pie_chart @post.chart_items,
                         width: '700px',
@@ -11,22 +11,26 @@
         </div>
         <div class="monthly-saving">
           <% unless @post.balance.amount <= 0 %>
+          <div class="monthly-saving__monthly-target">
           今月の貯金額は手取り<span>の <%= @post.saving_rate %>％、</span>
             <% if (@post.balance.amount >= @fixed_profile.monthly_target) %>
             <span>月の目標額 <%= @fixed_profile.monthly_target.to_s(:delimited) %>円 を達成！</span>
             <% else %>
             月の目標額 <%= @fixed_profile.monthly_target.to_s(:delimited) %>円 は未達成
             <% end %>
+          </div>
           <% end %>
-          <br><br>
           <% if @fixed_profile.target.present? %>
+          <div class="monthly-saving__target">
             <% if (@fixed_profile.target > @post.current_savings) %>
-              貯金目標額の<%= @fixed_profile.target.to_s(:delimited) %>円まで、あと <strong><%= (@fixed_profile.target - @current_savings).to_s(:delimited) %>円 </strong>💪
+              ★貯金目標額の<%= @fixed_profile.target.to_s(:delimited) %>円まで、あと <strong><%= (@fixed_profile.target - @current_savings).to_s(:delimited) %>円</strong>★
             <% elsif (@fixed_profile.target <= @post.current_savings) %>
               <strong>貯金目標額の<%= @fixed_profile.target.to_s(:delimited) %>円を達成しました！</strong>🎉🎉🎉
             <% end %>
+          </div>
           <% end %>
         </div>
+
         <div class="post-explanation-show">
           <div class="post-explanation-show__left">
             <% if @explanation.present? %>
@@ -36,7 +40,7 @@
             <% else %>
               <% if current_user&.id == @post.user.id %>
               <div class="create-explanation">
-                <%= link_to "説明を追加", new_post_explanation_path(@post) %>
+                <%= link_to "収支の補足説明を追加", new_post_explanation_path(@post) %>
               </div>
               <% end %>
             <% end %>
@@ -54,9 +58,21 @@
             <% end %>
           </div>
         </div>
+
+        <div class="post-likes">
+          <% if current_user&.like?(@post) %>
+            <%= link_to post_likes_path(@post), method: :delete, class: "likes-icon" do %>
+            <span class="material-symbols-outlined">thumb_up</span>
+            <% end %>
+          <% else %>
+            <%= link_to post_likes_path(@post), method: :post, class: "likes-icon-gray" do %>
+            <span class="material-symbols-outlined">thumb_up</span>
+            <% end %>
+          <% end %>
+        </div>
       </div>
 
-      <div class="table-expenses">
+      <div class="post-show__right">
         <div class="pie-year-month-show">
           <%= @post.month.strftime("%Y年%-m月") %>
         </div>
@@ -138,5 +154,22 @@
       </div>
     </div>
 
+    <div class="comment-form">
+      <% if user_signed_in? %>
+        <%= form_with model: [@post, @comment], id: "comment-form", local: true do |f| %>
+          <%= f.text_area :text , class: "comment-text"%>
+          <%= f.submit "コメントをする", class: "comment-submit" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div id="comments">
+      <h4>＜コメント一覧＞</h4>
+        <% @comments.each do |comment| %>
+          <div class="comment">
+            <p class="user-info"><%= link_to comment.user.nickname, user_path(comment.user) %>： </p>
+            <p><%= comment.text %></p>
+          </div>
+        <% end %>
+    </div>
   </div>
 </div>

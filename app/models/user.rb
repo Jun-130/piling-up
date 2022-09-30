@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_one :introduction, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :targets, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
 
@@ -29,6 +31,11 @@ class User < ApplicationRecord
     elsif target.present? && target.amount > self.current_savings && target.completed == true
       target.update(status: false)
     end
+  end
+
+  def like?(post)
+    like = self.likes.find_by(post_id: post.id)
+    like.present?
   end
 end
 

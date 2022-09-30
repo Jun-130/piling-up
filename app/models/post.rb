@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   has_one :balance, dependent: :destroy
   has_one :fixed_profile, dependent: :destroy
   has_one :explanation, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates :month, uniqueness: { scope: :user }
   validates :month, :net_income, :housing, :utilities, :internet,

@@ -27,6 +27,8 @@ class PostsController < ApplicationController
     @current_savings = @post.current_savings
     @fixed_profile = @post.fixed_profile
     @explanation = @post.explanation
+    @comments = @post.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit

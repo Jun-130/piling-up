@@ -7,7 +7,7 @@
   width: 945px;
   margin: 0 auto;
 }
-.income_expenses{
+.post-show-main{
   display: flex;
   justify-content: space-between;
 }
@@ -59,11 +59,11 @@
   color: #f37053;
 }
 .create-explanation{
-  margin: 20px 0 0 10px;
-  font-size: 0.85em;
+  margin: 15px 0 0 10px;
+  font-size: 0.8em;
 }
 .edit-explanation{
-  margin: 46px 0 12px 12px;
+  margin: 30px 0 12px 12px;
 }
 .destroy-explanation{
   margin-left: 12px;
@@ -98,16 +98,55 @@
   margin: 5px 0 0 10px;
   font-family: 'Kanit', sans-serif;
 }
+.monthly-saving__target{
+  margin-top: 10px;
+}
 .post-explanation-show{
   display: flex;
 }
 .post-explanation{
   width: 560px;
-  height: 120px;
+  height: 90px;
   margin-top: 20px;
   padding: 1em 1em;
   border: 2px #e1eec1 solid;
   border-radius: 10px;
   color: #5b5c76;
   font-size: 0.85em;
+}
+
+/* likes */
+.post-likes{
+  margin: 12px 0 0 10px;
+}
+.likes-icon span.material-symbols-outlined{
+  font-size: 28px;
+  color: #28a44a;
+}
+.likes-icon-gray span.material-symbols-outlined{
+  font-size: 28px;
+}
+
+/* comment */
+
+.comment-form{
+  display: flex;
+}
+.comment-text{
+  display: block;
+  margin-top: 20px;
+}
+.comment-submit{
+  display: block;
+  margin-top: 20px;
+}
+.comment{
+  display: flex;
+}
+.comment p{
+  margin: 0;
+}
+.user-info{
+  color: gray;
+  font-weight: bold;
 }
