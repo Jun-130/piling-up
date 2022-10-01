@@ -39,12 +39,12 @@
           </div>
           <div class="user-info-follower number">
             <%= link_to user_followers_path(@user) do %>
-            フォロワー <span><%= @user.followers.count %></span> 人
+            フォロワー <span><%= @user.followers.length %></span> 人
             <% end %>
           </div>
           <div class="user-info-followee number">
             <%= link_to user_followees_path(@user) do %>
-            フォロー中 <span><%= @user.followees.count %></span> 人
+            フォロー中 <span><%= @user.followees.length %></span> 人
             <% end %>
           </div>
         </div>

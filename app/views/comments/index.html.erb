@@ -1,0 +1,51 @@
+<div class="comments-index">
+  <div class="comments-main">
+    <div class="comments-main__top">
+      <div class="comment-pie">
+        <%= link_to post_path(@post) do%>
+          <div class="comment-pie__left">
+            <%= pie_chart @post.chart_items,
+                          width: '345px',
+                          height: '150px',
+                          colors: ['#fabea7','#94bcb7','#fdbf64','#8aa3b9','#fff700','#aeb5dc','#e5b7be','#d0e39b'] %>
+          </div>
+        <% end %>
+        <div class="comment-pie__right">
+          <div class="comment-pie__right-top">
+            <div class="comment-pie-month">
+              <%= @post.month.strftime("%Y年%-m月") %>
+            </div>
+            <p class="user-info comment-pie-user"><%= link_to @post.user.nickname, user_path(@post.user) %></p>
+          </div>
+          <% if @post.explanation.present? %>
+          <div class="comment-pie-explanation">
+            <%= @post.explanation.text %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments-main__middle">
+      <% @comments.each do |comment| %>
+        <div class="comment">
+          <p class="user-info"><%= link_to comment.user.nickname, user_path(comment.user) %>： </p>
+          <p><%= comment.text %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="comments-main__bottom">
+      <% if user_signed_in? %>
+        <%= form_with model: [@post, @comment], class: "comment-form", local: true do |f| %>
+        <div class="comment-text">
+          <%= f.text_area :text, class: "comment-text-area", placeholder: "コメントを入力" %>
+        </div>
+        <div class="comment-submit">
+          <%= f.submit "投稿", class: "comment-submit-btn" %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

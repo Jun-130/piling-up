@@ -1,0 +1,28 @@
+<div class="post-icons">
+  <div class="post-icons__left">
+    <div class="post-comments">
+      <%= link_to post_comments_path(post), class: "comments-icon" do %>
+      <span class="material-symbols-outlined">chat</span>
+      <% end %>
+    </div>
+    <div class="comments-count post-count">
+      <%= post.comments.length %>
+    </div>
+  </div>
+  <div class="post-icons__right">
+    <div class="post-likes">
+      <% if current_user&.like?(post) %>
+        <%= link_to post_likes_path(post), method: :delete, class: "likes-icon" do %>
+        <span class="material-symbols-outlined">thumb_up</span>
+        <% end %>
+      <% else %>
+        <%= link_to post_likes_path(post), method: :post, class: "likes-icon-gray" do %>
+        <span class="material-symbols-outlined">thumb_up</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="likes-count post-count">
+      <%= post.likes.length %>
+    </div>
+  </div>
+</div>

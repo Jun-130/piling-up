@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :targets, only: [:index, :create]
   resources :posts do
     resources :explanations, only: [:new, :create, :edit, :update, :destroy]
-    resources :comments, only: :create
+    resources :comments, only: [:index, :create]
     resource  :likes, only: [:create, :destroy]
   end
 end
