@@ -7,7 +7,7 @@ PILING UP
 <br /><br />
 
 # URL
-http://
+https://piling-up.herokuapp.com/
 <br /><br />
 
 # テスト用アカウント

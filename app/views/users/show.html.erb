@@ -21,7 +21,7 @@
           </div>
           <div class="user-info-top__right-top__right">
             <% if current_user&.id != @user.id %>
-              <% if current_user.following?(@user) %>
+              <% if current_user&.following?(@user) %>
               <div class="user-info-following">
                 <%= link_to "フォロー中", user_follows_path(@user), method: :delete %>
               </div>

@@ -1,6 +1,6 @@
 class TargetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :move_to_profile_new
-  before_action :authenticate_user!, only: :index
 
   def index
     @targets = Target.where(user_id: current_user.id).order(created_at: :desc)

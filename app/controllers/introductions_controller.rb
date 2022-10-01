@@ -1,6 +1,6 @@
 class IntroductionsController < ApplicationController
-  before_action :move_to_profile_new
   before_action :authenticate_user!, only: :new
+  before_action :move_to_profile_new
   before_action :set_introduction, only: [:edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :destroy]
   before_action :move_to_user_page, only: :new
