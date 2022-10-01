@@ -9,56 +9,47 @@ class Post < ApplicationRecord
   validates :month, uniqueness: { scope: :user }
   validates :month, :net_income, :housing, :utilities, :internet,
             :groceries, :daily_necessities, :entertainment, :others,
-            presence: true 
+            presence: true
   validates :net_income, :housing, :utilities, :internet,
             :groceries, :daily_necessities, :entertainment, :others,
-            numericality: {only_integer: true}
+            numericality: { only_integer: true }
 
   def chart_items
-    ({'家賃': self.housing, '水道光熱費': self.utilities, '通信費': self.internet, '食費': self.groceries, '日用品費': self.daily_necessities, '娯楽費': self.entertainment, 'その他出費': self.others, '貯金': self.balance.amount})
+    { '家賃': housing, '水道光熱費': utilities, '通信費': internet, '食費': groceries,
+      '日用品費': daily_necessities, '娯楽費': entertainment, 'その他出費': others, '貯金': balance.amount }
   end
 
   def expenses
-    (self.housing + self.utilities + self.internet + self.groceries + self.daily_necessities + self.entertainment + self.others)
+    (housing + utilities + internet + groceries + daily_necessities + entertainment + others)
   end
 
   def calculate_balance
-    self.expenses
-    return (self.net_income - expenses)
+    expenses
+    (net_income - expenses)
   end
 
   def saving_rate
-    (self.balance.amount.to_f / self.net_income.to_f * 100).round
+    (balance.amount.to_f / net_income * 100).round
   end
 
   def current_savings
     # balance_total: 投稿した収支の年月までの、投稿者の残高の合計
-    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: self.user_id).where("month <= ?", self.month.to_date)&.sum(:amount)
-    return (self.user.initial_savings + balance_total)
+    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: user_id).where('month <= ?', month.to_date)&.sum(:amount)
+    (user.initial_savings + balance_total)
   end
 
   def check_target_achievement_when_create
-    if self.fixed_profile.target.present? && self.fixed_profile.target <= self.current_savings
-      target.update(completed: true)
-    end
+    target.update(completed: true) if fixed_profile.target.present? && fixed_profile.target <= current_savings
   end
 
   def check_target_achievement_when_update
-    target = self.user.targets&.last
-    if (
-      self.fixed_profile.target.present? &&
-      self.fixed_profile.target <= self.current_savings &&
-      self.fixed_profile.target == target.amount &&
-      target.completed == false
-      )
-      target.update(completed: true)
-    elsif (
-      self.fixed_profile.target.present? &&
-      self.fixed_profile.target > self.current_savings &&
-      self.fixed_profile.target == target.amount &&
-      target.completed == true
-      )
-      target.update(completed: false)
+    target = user.targets&.last
+    if fixed_profile.target.present? && fixed_profile.target == target.amount
+      if fixed_profile.target <= current_savings && target.completed == false
+        target.update(completed: true)
+      elsif fixed_profile.target > current_savings && target.completed == true
+        target.update(completed: false)
+      end
     end
   end
 end

@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
   def edit
   end
-  
+
   def update
     if @post.update(post_params)
       update_balance
@@ -53,9 +53,7 @@ class PostsController < ApplicationController
   private
 
   def move_to_profile_new
-    if user_signed_in? && current_user.profile.nil?
-      redirect_to new_profile_path
-    end
+    redirect_to new_profile_path if user_signed_in? && current_user.profile.nil?
   end
 
   def set_post
@@ -71,7 +69,8 @@ class PostsController < ApplicationController
     profile = current_user.profile
     target = current_user.targets.find_by(completed: false)
     FixedProfile.create(
-      age: profile.age.name, gender: profile.gender.name, household: profile.household.name, annual_income: profile.annual_income.name, prefecture: profile.prefecture.name,
+      age: profile.age.name, gender: profile.gender.name, household: profile.household.name,
+      annual_income: profile.annual_income.name, prefecture: profile.prefecture.name,
       monthly_target: profile.monthly_target, target: target&.amount, post_id: @post.id
     )
   end

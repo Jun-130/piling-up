@@ -10,51 +10,50 @@ class User < ApplicationRecord
   has_many :targets, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :follower, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
-  has_many :followee, class_name: "Follow", foreign_key: "followee_id", dependent: :destroy
+  has_many :follower, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followee, class_name: 'Follow', foreign_key: 'followee_id', dependent: :destroy
   has_many :followees, through: :follower, source: :followee # 自分がフォローしている人
   has_many :followers, through: :followee, source: :follower # 自分をフォローしている人
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
 
-  validates_format_of :password, { with: PASSWORD_REGEX, messege: "is invalid. Include both letters and numbers" }
+  validates_format_of :password, { with: PASSWORD_REGEX, messege: 'is invalid. Include both letters and numbers' }
 
   validates :nickname, presence: true
   validates :initial_savings, presence: true
 
   def current_savings
     # balance_total: userのこれまでの残高の合計
-    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: self.id)&.sum(:amount)
-    return (self.initial_savings + balance_total)
+    balance_total = Post.joins(:balance).select('posts.*, balance.amount').where(user_id: id)&.sum(:amount)
+    (initial_savings + balance_total)
   end
 
   def check_target_achievement
-    target = self.targets&.last
-    if target.present? && target.amount <= self.current_savings && target.completed == false
-      target.update(status: true)
-    elsif target.present? && target.amount > self.current_savings && target.completed == true
-      target.update(status: false)
+    target = targets&.last
+    if target.present?
+      if target.amount <= current_savings && target.completed == false
+        target.update(completed: true)
+      elsif target.amount > current_savings && target.completed == true
+        target.update(completed: false)
+      end
     end
   end
 
   def like?(post)
-    like = self.likes.find_by(post_id: post.id)
+    like = likes.find_by(post_id: post.id)
     like.present?
   end
 
   def follow(other_user)
-    unless self == other_user
-      self.follower.find_or_create_by(followee_id: other_user.id)
-    end
+    follower.find_or_create_by(followee_id: other_user.id) unless self == other_user
   end
 
   def unfollow(other_user)
-    follow = self.follower.find_by(followee_id: other_user.id)
-    follow.destroy if follow
+    follow = follower.find_by(followee_id: other_user.id)
+    follow&.destroy
   end
 
   def following?(other_user)
-    self.followees.include?(other_user)
+    followees.include?(other_user)
   end
 end
-

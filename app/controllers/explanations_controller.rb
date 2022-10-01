@@ -19,7 +19,7 @@ class ExplanationsController < ApplicationController
 
   def edit
   end
-  
+
   def update
     if @explanation.update(explanation_params)
       redirect_to post_path(@post)

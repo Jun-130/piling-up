@@ -6,5 +6,5 @@ class Target < ApplicationRecord
     validates :amount, numericality: { only_integer: true }
   end
   validates :completed, inclusion: [true, false],
-                        uniqueness: { scope: :user, on: :create, message: "未達成の目標があるため、新しい目標は設定できません" }
+                        uniqueness: { scope: :user, on: :create, message: '未達成の目標があるため、新しい目標は設定できません' }
 end

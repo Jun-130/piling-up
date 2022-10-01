@@ -20,7 +20,7 @@ class IntroductionsController < ApplicationController
 
   def edit
   end
-  
+
   def update
     if @introduction.update(introduction_params)
       redirect_to user_path(current_user)
@@ -37,9 +37,7 @@ class IntroductionsController < ApplicationController
   private
 
   def move_to_profile_new
-    if user_signed_in? && current_user.profile.nil?
-      redirect_to new_profile_path
-    end
+    redirect_to new_profile_path if user_signed_in? && current_user.profile.nil?
   end
 
   def set_introduction
