@@ -1,0 +1,18 @@
+<div class="follow-index">
+  <div class="follow-index__left">
+    <%= link_to user.nickname, user_path(user), class: "follow-user-name" %>
+  </div>
+  <div class="follow-index__right">
+  <% if current_user&.id != user.id %>
+    <% if current_user&.following?(user) %>
+    <div class="user-info-following follow-user">
+      <%= link_to "フォロー中", user_follows_path(user), method: :delete %>
+    </div>
+    <% else %>
+    <div class="user-info-follow follow-user">
+      <%= link_to "フォローする", user_follows_path(user), method: :post %>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>

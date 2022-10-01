@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :targets, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :follower, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
+  has_many :followee, class_name: "Follow", foreign_key: "followee_id", dependent: :destroy
+  has_many :followees, through: :follower, source: :followee # 自分がフォローしている人
+  has_many :followers, through: :followee, source: :follower # 自分をフォローしている人
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
 
@@ -36,6 +40,21 @@ class User < ApplicationRecord
   def like?(post)
     like = self.likes.find_by(post_id: post.id)
     like.present?
+  end
+
+  def follow(other_user)
+    unless self == other_user
+      self.follower.find_or_create_by(followee_id: other_user.id)
+    end
+  end
+
+  def unfollow(other_user)
+    follow = self.follower.find_by(followee_id: other_user.id)
+    follow.destroy if follow
+  end
+
+  def following?(other_user)
+    self.followees.include?(other_user)
   end
 end
 

@@ -1,0 +1,33 @@
+.follows-index{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.follows{
+  width: 945px;
+  margin: 0 auto;
+}
+.follow-index{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 280px;
+}
+.follow-index__left{
+  margin-right: 15px;
+}
+.follow-user-name{
+  color: #5b5c76;
+}
+.follow-user-name:before{
+  font-family: 'Material Icons Outlined';
+  content: '\e853';
+  font-size: 28px;
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.follow-user{
+  width: 50px;
+}

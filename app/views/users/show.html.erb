@@ -9,24 +9,43 @@
       </div>
       <div class="user-info-top__right">
         <div class="user-info-top__right-top">
-          <div class="user-info-nickname">
-            <%= @user.nickname %>
+          <div class="user-info-top__right-top__left">
+            <div class="user-info-nickname">
+              <%= @user.nickname %>
+            </div>
+            <% if current_user&.id == @user.id %>
+            <div class="user-info-edit-account">
+              <%= link_to "アカウント情報を編集", "#" %>
+            </div>
+            <% end %>
           </div>
-          <% if current_user&.id == @user.id %>
-          <div class="user-info-edit-account">
-            <%= link_to "アカウント情報を編集", "#" %>
+          <div class="user-info-top__right-top__right">
+            <% if current_user&.id != @user.id %>
+              <% if current_user.following?(@user) %>
+              <div class="user-info-following">
+                <%= link_to "フォロー中", user_follows_path(@user), method: :delete %>
+              </div>
+              <% else %>
+              <div class="user-info-follow">
+                <%= link_to "フォローする", user_follows_path(@user), method: :post %>
+              </div>
+              <% end %>
+            <% end %>
           </div>
-          <% end %>
         </div>
         <div class="user-info-top__right-middle">
           <div class="user-info-statements number">
           投稿 <span><%= @user.posts.length %></span> 件
           </div>
           <div class="user-info-follower number">
-          フォロワー <span>0</span> 人
+            <%= link_to user_followers_path(@user) do %>
+            フォロワー <span><%= @user.followers.count %></span> 人
+            <% end %>
           </div>
           <div class="user-info-followee number">
-          フォロー <span>0</span> 人
+            <%= link_to user_followees_path(@user) do %>
+            フォロー中 <span><%= @user.followees.count %></span> 人
+            <% end %>
           </div>
         </div>
         <div class="user-info-top__right-bottom">
