@@ -130,7 +130,7 @@
           <div class="introduction-content content1">
             <%= @introduction&.text1 %>
           </div>
-          <% if @introduction&.title2 %>
+          <% if @introduction&.title2.present? %>
           <div class="introduction-title title2">
             ⭐️ <%= @introduction&.title2 %>
           </div>
