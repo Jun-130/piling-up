@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :move_to_index, only: [:edit, :destroy]
 
   def index
-    @posts = Post.order(created_at: :desc).includes(:user, :balance, :fixed_profile, :explanation)
+    @posts = Post.order(created_at: :desc).includes(:user, :explanation)
   end
 
   def new

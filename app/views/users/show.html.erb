@@ -10,14 +10,16 @@
       <div class="user-info-top__right">
         <div class="user-info-top__right-top">
           <div class="user-info-top__right-top__left">
-            <div class="user-info-nickname">
-              <%= @user.nickname %>
+            <div class="user-info-top__right-top__flex">
+              <div class="user-info-nickname">
+                <%= @user.nickname %>
+              </div>
+              <% if current_user&.id == @user.id %>
+              <div class="user-info-edit-account">
+                <%= link_to "アカウント情報を編集", "#" %>
+              </div>
+              <% end %>
             </div>
-            <% if current_user&.id == @user.id %>
-            <div class="user-info-edit-account">
-              <%= link_to "アカウント情報を編集", "#" %>
-            </div>
-            <% end %>
           </div>
           <div class="user-info-top__right-top__right">
             <% if current_user&.id != @user.id %>
@@ -35,17 +37,22 @@
         </div>
         <div class="user-info-top__right-middle">
           <div class="user-info-statements number">
-          投稿 <span><%= @user.posts.length %></span> 件
+            <%= link_to posts_user_path(@user) do %>
+            投稿 <span><%= @user.posts.length %></span>件
+            <% end %>
           </div>
           <div class="user-info-follower number">
-            <%= link_to user_followers_path(@user) do %>
-            フォロワー <span><%= @user.followers.length %></span> 人
+            <%= link_to followers_user_path(@user) do %>
+            フォロワー <span><%= @user.followers.length %></span>人
             <% end %>
           </div>
           <div class="user-info-followee number">
-            <%= link_to user_followees_path(@user) do %>
-            フォロー中 <span><%= @user.followees.length %></span> 人
+            <%= link_to followees_user_path(@user) do %>
+            フォロー中 <span><%= @user.followees.length %></span>人
             <% end %>
+          </div>
+          <div class="user-info-likes number">
+            <%= link_to "いいね一覧", likes_user_path(@user) %>
           </div>
         </div>
         <div class="user-info-top__right-bottom">
@@ -148,11 +155,6 @@
           </div>
           <% end %>
         <% end %>
-      </div>
-    </div>
-    <div class="user-posts">
-      <div class="posts">
-        <%= render partial: 'shared/post', collection: @user.posts %>
       </div>
     </div>
   </div>

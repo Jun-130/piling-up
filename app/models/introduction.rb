@@ -1,5 +1,5 @@
 class Introduction < ApplicationRecord
   belongs_to :user
 
-  validates :title1, :content1, presence: true
+  validates :title1, :text1, presence: true
 end
