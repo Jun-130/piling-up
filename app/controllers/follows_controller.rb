@@ -12,16 +12,6 @@ class FollowsController < ApplicationController
     redirect_to request.referer
   end
 
-  def followees
-    @followees = @user.followees
-    redirect_to request.referer unless @followees.present?
-  end
-
-  def followers
-    @followers = @user.followers
-    redirect_to request.referer unless @followers.present?
-  end
-
   private
 
   def set_user

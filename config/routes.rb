@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   }
   root to: 'posts#index'
   resources :users, only: :show do
+    member do
+      get :posts, :likes, :followees, :followers
+    end
     resource :follows, only: [:create, :destroy]
-    get 'followees', to: 'follows#followees', as: 'followees'
-    get 'followers', to: 'follows#followers', as: 'followers'
   end
   resources :profiles, only: [:new, :create, :edit, :update]
   resources :introductions, only: [:new, :create, :edit, :update, :destroy]
