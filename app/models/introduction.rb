@@ -3,5 +3,5 @@ class Introduction < ApplicationRecord
 
   validates :title1, :text1, presence: true
   validates :title1, :title2, length: { maximum: 40 }
-  validates :text1, :text2, length: { maximum: 250 }
+  validates :text1, :text2, length: { maximum: 160 }
 end
