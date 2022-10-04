@@ -56,7 +56,7 @@ https://piling-up.herokuapp.com/
 <br /><br />
 
 # 洗い出した要件
-[要件を定義したシート](https://docs.google.com/spreadsheets/d/1NTQiaITko4Jr8C9RD0_LEVGF9SPnwetnzbJAGwjtnc0/edit#gid=982722306)
+[要件を定義したシート](https://docs.google.com/spreadsheets/d/1NTQiaITko4Jr8C9RD0_LEVGF9SPnwetnzbJAGwjtnc0/edit?usp=sharing)
 <br /><br />
 
 # 実装した機能についての画像やGIFおよびその説明
