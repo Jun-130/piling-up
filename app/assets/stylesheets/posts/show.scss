@@ -115,30 +115,3 @@
   font-size: 0.9em;
   line-height: 1.4em;
 }
-
-/* post-icons */
-.post-icons{
-  display: flex;
-  margin: 11.5px 0 0 10px;
-}
-.post-comments{
-  margin: 2.5px 20px 0 0;
-}
-.comments-icon span.material-symbols-outlined{
-  font-size: 28px;
-}
-.likes-icon span.material-symbols-outlined{
-  font-size: 28px;
-  color: #28a44a;
-}
-.likes-icon-gray span.material-symbols-outlined{
-  font-size: 28px;
-}
-.likes-count{
-  margin-top: 2.5px;
-}
-.post-count{
-  color: gray;
-  font-size: 12px;
-  padding-left: 5px;
-}

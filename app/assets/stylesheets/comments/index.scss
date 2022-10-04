@@ -34,7 +34,8 @@
 
 /* comments.each */
 .comments-main__middle{
-  margin-top: 40px;
+  margin-top: 36px;
+  height: calc(100vh - 400px);
   overflow: scroll;
 }
 .comment{
