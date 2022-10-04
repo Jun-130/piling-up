@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resource :follows, only: [:create, :destroy]
   end
+  resources :statuses, only: [:create, :destroy]
   resources :profiles, only: [:new, :create, :edit, :update]
   resources :introductions, only: [:new, :create, :edit, :update, :destroy]
   resources :targets, only: [:index, :create]

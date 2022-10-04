@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_30_094634) do
+ActiveRecord::Schema.define(version: 2022_10_04_042318) do
 
   create_table "balances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "amount", null: false
@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(version: 2022_09_30_094634) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_statuses_on_user_id"
+  end
+
   create_table "targets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "deadline", null: false
     t.integer "amount", null: false
@@ -147,5 +154,6 @@ ActiveRecord::Schema.define(version: 2022_09_30_094634) do
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "statuses", "users"
   add_foreign_key "targets", "users"
 end

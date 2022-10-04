@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_one :introduction, dependent: :destroy
+  has_one :status, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :targets, dependent: :destroy
   has_many :comments, dependent: :destroy

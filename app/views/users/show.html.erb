@@ -105,21 +105,53 @@
           <% end %>
         </table>
         <% if current_user&.id == @user.id %>
-        <div class="user-info-edit-profile">
-          <%= link_to "プロフィールを編集", edit_profile_path(@profile) %>
-        </div>
-        <table>
-          <tr class="user-info-initial_savings">
-            <td class="td-profile-label">登録時の貯金額</td>
-            <td class="td-profile">:　<%= @user.initial_savings.to_s(:delimited) %>円</td>
-          </tr>
-          <tr class="user-info-current_savings">
-            <td class="td-profile-label">現在の貯金額</td>
-            <td class="td-profile">:　<%= @current_savings.to_s(:delimited) %>円</td>
-          </tr>
-        </table>
+          <div class="user-info-edit-profile">
+            <%= link_to "プロフィールを編集", edit_profile_path(@profile) %>
+          </div>
+        <% end %>
+        <% if @user.status.present? || current_user&.id == @user.id %>
+          <table>
+            <tr class="user-info-initial_savings">
+              <td class="td-profile-label">登録時の貯金額</td>
+              <td class="td-profile">:　<%= @user.initial_savings.to_s(:delimited) %>円</td>
+            </tr>
+            <tr class="user-info-current_savings">
+              <td class="td-profile-label">現在の貯金額</td>
+              <td class="td-profile">:　<%= @current_savings.to_s(:delimited) %>円</td>
+            </tr>
+          </table>
+        <% end %>
+        <% if current_user&.id == @user.id %>
+          <% if @user.status.present? %>
+            <div class="public-private">
+              <div class="link-nil">
+                <span class="material-symbols-outlined">public</span>
+                <span class="nil-desc nil-public">貯金額公開中</span>
+              </div>
+              <div class="link-present">
+                <%= link_to status_path(@user.status), method: :delete, class: "public-icon" do %>
+                <span class="material-symbols-outlined">lock</span>
+                <span class="present-desc">非公開にする</span>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="public-private">
+              <div class="link-present">
+                <%= link_to statuses_path, method: :post, class: "public-icon" do %>
+                <span class="material-symbols-outlined">public</span>
+                <span class="present-desc public-desc">　公開する　</span>
+                <% end %>
+              </div>
+              <div class="link-nil">
+                <span class="material-symbols-outlined">lock</span>
+                <span class="nil-desc">貯金額非公開</span>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
+
       <div class="user-info-bottom__right">
         <div class="user-info-introduction">
           <% if @introduction&.title1 %>
