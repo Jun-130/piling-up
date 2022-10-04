@@ -49,12 +49,11 @@
   display: flex;
   justify-content: right;
   padding-right: 11px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 .expenses-total{
   color: #404448;
   font-size: 0.85em;
-  margin: 7px;
   text-align: right;
 }
 .expenses-total td{
@@ -63,18 +62,19 @@
 }
 .post-explanation-index{
   width: 420px;
-  height: 76px;
+  height: 86px;
   margin: 0 auto;
-  padding: 8px 11px;
+  padding: 7px 11px;
   border: 2px #e1eec1 solid;
   border-radius: 10px;
   color: #5b5c76;
   font-size: 0.8em;
   line-height: 1.35em;
+  overflow: scroll;
 }
 .post-explanation-nil{
   width: 420px;
-  height: 76px;
+  height: 86px;
   margin: 0 auto;
 }
 .post-index-icons{
