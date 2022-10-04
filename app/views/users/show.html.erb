@@ -124,19 +124,27 @@
         <div class="user-info-introduction">
           <% if @introduction&.title1 %>
           <div class="introduction-title title1">
-            ⭐️ <%= @introduction&.title1 %>
+            ★ <%= @introduction&.title1 %>
           </div>
           <% end %>
           <div class="introduction-content content1">
+            <% if @introduction&.text1.nil? %>
             <%= @introduction&.text1 %>
+            <% else %>
+            <%= safe_join(@introduction&.text1.split("\n"),tag(:br)) %>
+            <% end %>
           </div>
           <% if @introduction&.title2.present? %>
           <div class="introduction-title title2">
-            ⭐️ <%= @introduction&.title2 %>
+            ★ <%= @introduction&.title2 %>
           </div>
           <% end %>
           <div class="introduction-content title2">
+            <% if @introduction&.text2.nil? %>
             <%= @introduction&.text2 %>
+            <% else %>
+            <%= safe_join(@introduction&.text2.split("\n"),tag(:br)) %>
+            <% end %>
           </div>
         </div>
         <% if current_user&.id == @user.id %>

@@ -34,7 +34,7 @@
           <div class="post-explanation-show__left">
             <% if @explanation.present? %>
               <div class="post-explanation">
-                <%= @explanation.text %>
+                <%= safe_join(@explanation.text.split("\n"),tag(:br)) %>
               </div>
             <% else %>
               <% if current_user&.id == @post.user.id %>

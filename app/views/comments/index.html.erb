@@ -19,7 +19,7 @@
           </div>
           <% if @post.explanation.present? %>
           <div class="comment-pie-explanation">
-            <%= @post.explanation.text %>
+            <%= safe_join(@post.explanation.text.split("\n"),tag(:br)) %>
           </div>
           <% end %>
         </div>
@@ -30,7 +30,7 @@
       <% @comments.each do |comment| %>
         <div class="comment">
           <p class="user-info"><%= link_to comment.user.nickname, user_path(comment.user) %>： </p>
-          <p><%= comment.text %></p>
+          <p><%= safe_join(comment.text.split("\n"),tag(:br)) %></p>
         </div>
       <% end %>
     </div>

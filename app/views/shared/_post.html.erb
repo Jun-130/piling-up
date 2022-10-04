@@ -21,7 +21,7 @@
       </div>
       <% if post.explanation.present? %>
       <div class="post-explanation-index">
-        <%= post.explanation.text %>
+        <%= safe_join(post.explanation.text.split("\n"),tag(:br)) %>
       </div>
       <% else %>
       <div class="post-explanation-nil">
