@@ -56,16 +56,16 @@
           </div>
         </div>
         <div class="user-info-top__right-bottom">
-          <% if @target.present? %>
-          <div class="user-info-target">
-            貯金目標 :　<span><%= @target.deadline.strftime("%Y年%-m月") %>までに<%= @target.amount.to_s(:delimited) %>円貯める！</span>
-          </div>
-          <% else %>
-          <div class="user-info-target target-nil">
-            現在、貯金目標額は未設定です。
-          </div>
-          <% end %>
           <% if current_user&.id == @user.id %>
+            <% if @target.present? %>
+            <div class="user-info-target">
+              貯金目標 :　<span><%= @target.deadline.strftime("%Y年%-m月") %>までに<%= @target.amount.to_s(:delimited) %>円貯める！</span>
+            </div>
+            <% else %>
+            <div class="user-info-target target-nil">
+              現在、貯金目標額は未設定です。
+            </div>
+            <% end %>
           <div class="user-info-edit-target">
             <%= link_to "目標金額を設定・編集", targets_path %>
           </div>
@@ -97,7 +97,7 @@
             <td class="td-profile-label">年収幅</td>
             <td class="td-profile">:　<%= @profile.annual_income.name %></td>
           </tr>
-          <% if @profile.monthly_target.present? %>
+          <% if @profile.monthly_target %>
           <tr class="user-info-monthly_target">
             <td class="td-profile-label">月の貯金目標額</td>
             <td class="td-profile">:　<%= @profile.monthly_target.to_s(:delimited) %>円</td>
@@ -108,7 +108,6 @@
         <div class="user-info-edit-profile">
           <%= link_to "プロフィールを編集", edit_profile_path(@profile) %>
         </div>
-        <% end %>
         <table>
           <tr class="user-info-initial_savings">
             <td class="td-profile-label">登録時の貯金額</td>
@@ -119,6 +118,7 @@
             <td class="td-profile">:　<%= @current_savings.to_s(:delimited) %>円</td>
           </tr>
         </table>
+        <% end %>
       </div>
       <div class="user-info-bottom__right">
         <div class="user-info-introduction">
